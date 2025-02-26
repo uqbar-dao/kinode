@@ -6,10 +6,10 @@ use crate::hyperware::process::settings::{
 use hyperware_process_lib::{
     await_message, call_init,
     eth::{self, Provider},
-    get_blob, get_capability, homepage, http, kernel_types,
+    get_blob, get_capability, homepage, http,
     hypermap::{self, HYPERMAP_ADDRESS},
-    net, println, Address, Capability, LazyLoadBlob, Message, ProcessId, Request, Response,
-    SendError, SendErrorKind,
+    kernel_types, net, println, Address, Capability, LazyLoadBlob, Message, ProcessId, Request,
+    Response, SendError, SendErrorKind,
 };
 use serde::{Deserialize, Serialize};
 use std::{collections::HashMap, str::FromStr, vec};
@@ -183,11 +183,13 @@ impl SettingsState {
         };
         self.our_tba = tba;
         self.our_owner = owner;
-        let Ok((_tba, _owner, bytes)) = hypermap.get(&format!("~net-key.{}", self.our.node())) else {
+        let Ok((_tba, _owner, bytes)) = hypermap.get(&format!("~net-key.{}", self.our.node()))
+        else {
             return Err(anyhow::anyhow!("failed to get net-key"));
         };
         self.net_key = bytes;
-        let Ok((_tba, _owner, bytes)) = hypermap.get(&format!("~routers.{}", self.our.node())) else {
+        let Ok((_tba, _owner, bytes)) = hypermap.get(&format!("~routers.{}", self.our.node()))
+        else {
             return Err(anyhow::anyhow!("failed to get routers"));
         };
         self.routers = bytes;
@@ -195,11 +197,13 @@ impl SettingsState {
             return Err(anyhow::anyhow!("failed to get ip"));
         };
         self.ip = bytes;
-        let Ok((_tba, _owner, bytes)) = hypermap.get(&format!("~ws-port.{}", self.our.node())) else {
+        let Ok((_tba, _owner, bytes)) = hypermap.get(&format!("~ws-port.{}", self.our.node()))
+        else {
             return Err(anyhow::anyhow!("failed to get ws-port"));
         };
         self.ws_port = bytes;
-        let Ok((_tba, _owner, bytes)) = hypermap.get(&format!("~tcp-port.{}", self.our.node())) else {
+        let Ok((_tba, _owner, bytes)) = hypermap.get(&format!("~tcp-port.{}", self.our.node()))
+        else {
             return Err(anyhow::anyhow!("failed to get tcp-port"));
         };
         self.tcp_port = bytes;

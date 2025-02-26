@@ -3,7 +3,9 @@ use crate::net::{
     utils::{print_debug, print_loud, IDLE_TIMEOUT, MESSAGE_MAX_SIZE},
     ws::{PeerConnection, WebSocket},
 };
-use lib::core::{check_process_id_hypermap_safe, KernelMessage, MessageSender, NodeId, PrintSender};
+use lib::core::{
+    check_process_id_hypermap_safe, KernelMessage, MessageSender, NodeId, PrintSender,
+};
 use {
     futures::{SinkExt, StreamExt},
     tokio::sync::mpsc::UnboundedReceiver,

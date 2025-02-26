@@ -3,7 +3,7 @@ use crate::net::types::{
     RoutingRequest, TCP_PROTOCOL, WS_PROTOCOL,
 };
 use lib::types::core::{
-    Identity, KernelMessage, HnsUpdate, Message, MessageSender, NetAction, NetworkErrorSender,
+    HnsUpdate, Identity, KernelMessage, Message, MessageSender, NetAction, NetworkErrorSender,
     NodeId, NodeRouting, PrintSender, Printout, Request, Response, SendError, SendErrorKind,
     WrappedSendError, NET_PROCESS_ID,
 };

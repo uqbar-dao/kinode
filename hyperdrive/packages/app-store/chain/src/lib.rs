@@ -33,7 +33,7 @@ use alloy_primitives::keccak256;
 use alloy_sol_types::SolEvent;
 use hyperware::process::chain::ChainResponse;
 use hyperware_process_lib::{
-    await_message, call_init, eth, get_blob, http, kernel_types as kt, hypermap, print_to_terminal,
+    await_message, call_init, eth, get_blob, http, hypermap, kernel_types as kt, print_to_terminal,
     println,
     sqlite::{self, Sqlite},
     timer, Address, Message, PackageId, Request, Response,
@@ -387,8 +387,10 @@ fn init(our: Address) {
         let eth_provider: eth::Provider = eth::Provider::new(CHAIN_ID, CHAIN_TIMEOUT);
 
         let db = DB::connect(&our).expect("failed to open DB");
-        let hypermap_helper =
-            hypermap::Hypermap::new(eth_provider, eth::Address::from_str(HYPERMAP_ADDRESS).unwrap());
+        let hypermap_helper = hypermap::Hypermap::new(
+            eth_provider,
+            eth::Address::from_str(HYPERMAP_ADDRESS).unwrap(),
+        );
         let last_saved_block = db.get_last_saved_block().unwrap_or(0);
 
         let mut state = State {
@@ -794,9 +796,15 @@ pub fn fetch_and_subscribe_logs(our: &Address, state: &mut State, last_saved_blo
     let filter = app_store_filter(state);
     // get past logs, subscribe to new ones.
     // subscribe first so we don't miss any logs
-    state.hypermap.provider.subscribe_loop(1, filter.clone(), 1, 0);
+    state
+        .hypermap
+        .provider
+        .subscribe_loop(1, filter.clone(), 1, 0);
     // println!("fetching old logs from block {last_saved_block}");
-    for log in fetch_logs(&state.hypermap.provider, &filter.from_block(last_saved_block)) {
+    for log in fetch_logs(
+        &state.hypermap.provider,
+        &filter.from_block(last_saved_block),
+    ) {
         if let Err(e) = handle_eth_log(our, state, log, true) {
             print_to_terminal(1, &format!("error ingesting log: {e}"));
         };
