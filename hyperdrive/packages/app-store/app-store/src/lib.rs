@@ -1,4 +1,3 @@
-#![feature(let_chains)]
 //! main:app-store:sys
 //!
 //! This process serves as the primary interface for the App Store system in the Hyperware ecosystem.

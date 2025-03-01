@@ -3692,7 +3692,7 @@ dependencies = [
 [[package]]
 name = "kit"
 version = "1.0.0"
-source = "git+https://github.com/hyperware-ai/kit?rev=b594b6f#b594b6f858280ac8806d9e78d61a6f929240ce4b"
+source = "git+https://github.com/hyperware-ai/kit?rev=12a4fde#12a4fde16f0f81a271d82559061da277c30d757f"
 dependencies = [
  "alloy",
  "alloy-sol-macro",

@@ -43,7 +43,7 @@ function Homepage() {
     <div id="homepage">
       <div className="container">
         <header>
-          <HyperwareLogo />
+          <HyperwareLogo style={{ marginRight: '10px' }} />
           <h2>
             {new Date().getHours() < 4
               ? "Good evening" // midnight to 4am
@@ -55,7 +55,7 @@ function Homepage() {
             }, {our}
           </h2>
           <a
-            href="https://github.com/hyperware-ai/hyperware/releases"
+            href="https://github.com/hyperware-ai/hyperdrive/releases"
             target="_blank"
           >
             [hyperware v{version}]

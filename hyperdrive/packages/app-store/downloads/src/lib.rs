@@ -1,4 +1,3 @@
-#![feature(let_chains)]
 //! downloads:app-store:sys
 //! This process manages the downloading and sharing of app packages in the Hyperware ecosystem.
 //! It handles both local and remote download requests, as well as file management.

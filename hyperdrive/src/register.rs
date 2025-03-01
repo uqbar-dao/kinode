@@ -609,7 +609,9 @@ pub async fn assign_routing(
     let tx = TransactionRequest::default().to(multicall).input(tx_input);
 
     let Ok(multicall_return) = provider.call(&tx).await else {
-        return Err(anyhow::anyhow!("Failed to fetch node IP data from hypermap"));
+        return Err(anyhow::anyhow!(
+            "Failed to fetch node IP data from hypermap"
+        ));
     };
 
     let Ok(results) = aggregateCall::abi_decode_returns(&multicall_return, false) else {
