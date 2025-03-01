@@ -1,4 +1,3 @@
-#![feature(let_chains)]
 //! chain:app-store:sys
 //! This process manages the onchain interactions for the App Store system in the Hyperware ecosystem.
 //! It is responsible for indexing and tracking app metadata stored on the blockchain.
@@ -522,7 +521,7 @@ fn handle_local_request(state: &mut State, req: ChainRequest) -> anyhow::Result<
             println!("re-indexing state!");
             // set last_saved_block to 0 to force re-index
             state.last_saved_block = 0;
-            let _ = state.db.set_last_saved_block(0);
+            state.db.set_last_saved_block(0)?;
             return Ok(true);
         }
     }
