@@ -1,13 +1,13 @@
 <p align="center">
-    <img width="551" alt="Screenshot 2024-05-08 at 2 38 11 PM" src="https://github.com/hyperware-ai/hyperdrive/assets/93405247/24c7982b-9d76-419a-96dc-ec4a25dda562">
+    <img width="300" alt="Hyperware" src="https://github.com/user-attachments/assets/3e29e04f-3f33-48c3-ae7c-977084197cca">
     <br />
-    <img src="https://img.shields.io/twitter/follow/Kinode">
+    <img src="https://img.shields.io/twitter/follow/hyperware_ai">
 
 </p>
 
 Hyperware is a general-purpose sovereign cloud computer, built for crypto.
 
-Hyperdrive is the runtime for Hyperware.
+Hyperdrive is the reference implementation runtime for Hyperware.
 
 This repo contains the core runtime and processes.
 Most developers need not build the runtime.
@@ -61,6 +61,7 @@ This software is under active development and should be **used at your own risk*
 
 A security audit targeting the networking protocol, web interface, and kernel architecture was performed by [Enigma Dark](https://www.enigmadark.com/).
 That report can be found [here](https://github.com/Enigma-Dark/security-review-reports/blob/main/2024-11-18_Architecture_Review_Report_Kinode.pdf).
+Note the report was for the previous branding of "Kinode": the architecture has not changed.
 
 ## Boot
 
@@ -261,13 +262,13 @@ docker volume create hyperdrive-${NODENAME}
 docker run -p 8080:8080 --rm -it --name hyperdrive-${NODENAME} --mount type=volume,source=hyperdrive-${NODENAME},destination=/hyperdrive-home hyperdrive-${VERSION}
 ```
 
-which will launch your Kinode container attached to the terminal.
+which will launch your Hyperdrive container attached to the terminal.
 Alternatively you can run it detached:
 ```
 docker run -p 8080:8080 --rm -dt --name hyperdrive-${NODENAME} --mount type=volume,source=hyperdrive-${NODENAME},destination=/hyperdrive-home hyperdrive-${VERSION}
 ```
 Note that the `-t` flag *must* be passed.
-If it is not passed, you must pass the `--detached` argument to the Kinode binary, i.e.
+If it is not passed, you must pass the `--detached` argument to the Hyperdrive binary, i.e.
 ```
 docker run -p 8080:8080 --rm -d --name hyperdrive-${NODENAME} --mount type=volume,source=hyperdrive-${NODENAME},destination=/hyperdrive-home hyperdrive-${VERSION} /hyperdrive-home --detached
 ```
