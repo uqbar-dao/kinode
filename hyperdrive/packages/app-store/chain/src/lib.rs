@@ -109,6 +109,15 @@ impl DB {
         Ok(db)
     }
 
+    pub fn drop_all(&self) -> anyhow::Result<()> {
+        self.inner.write(DROP_META_TABLE.into(), vec![], None)?;
+        self.inner.write(DROP_LISTINGS_TABLE.into(), vec![], None)?;
+        self.inner
+            .write(DROP_PUBLISHED_TABLE.into(), vec![], None)?;
+
+        Ok(())
+    }
+
     pub fn get_last_saved_block(&self) -> anyhow::Result<u64> {
         let query = "SELECT value FROM meta WHERE key = 'last_saved_block'";
         let rows = self.inner.read(query.into(), vec![])?;
@@ -378,6 +387,18 @@ CREATE TABLE IF NOT EXISTS published (
     PRIMARY KEY (package_name, publisher_node)
 );";
 
+const DROP_META_TABLE: &str = "
+DROP TABLE IF EXISTS meta;
+";
+
+const DROP_LISTINGS_TABLE: &str = "
+DROP TABLE IF EXISTS listings;
+";
+
+const DROP_PUBLISHED_TABLE: &str = "
+DROP TABLE IF EXISTS published;
+";
+
 call_init!(init);
 fn init(our: Address) {
     loop {
@@ -519,9 +540,10 @@ fn handle_local_request(state: &mut State, req: ChainRequest) -> anyhow::Result<
         ChainRequest::Reset => {
             Response::new().body(&ChainResponse::ResetOk).send()?;
             println!("re-indexing state!");
-            // set last_saved_block to 0 to force re-index
+            // set last_saved_block to 0 & drop tables to force re-index
             state.last_saved_block = 0;
             state.db.set_last_saved_block(0)?;
+            state.db.drop_all()?;
             return Ok(true);
         }
     }
