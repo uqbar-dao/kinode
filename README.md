@@ -1,7 +1,7 @@
 <p align="center">
     <img width="300" alt="Hyperware" src="https://github.com/user-attachments/assets/3e29e04f-3f33-48c3-ae7c-977084197cca">
     <br />
-    <img src="https://img.shields.io/twitter/follow/hyperware_ai">
+    <img src="https://img.shields.io/twitter/follow/Hyperware_ai">
 
 </p>
 
@@ -34,8 +34,7 @@ git clone git@github.com:hyperware-ai/hyperware.git
 
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 cargo install wasm-tools
-rustup install nightly
-rustup target add wasm32-wasip1 --toolchain nightly
+rustup target add wasm32-wasip1
 cargo install cargo-wasi
 
 # Install NPM so we can build frontends for "distro" packages.
@@ -65,7 +64,9 @@ Note the report was for the previous branding of "Kinode": the architecture has 
 
 ## Boot
 
-Make sure not to use the same home directory for two nodes at once! You can use any name for the home directory: here we just use `home`. The `--` here separates cargo arguments from binary arguments.
+Make sure not to use the same home directory for two nodes at once!
+You can use any name for the home directory: here we just use `home`.
+The `--` here separates cargo arguments from binary arguments.
 
 ```bash
 cargo run -p hyperdrive -- home
@@ -77,26 +78,64 @@ On boot you will be prompted to navigate to `localhost:8080` or whatever HTTP po
 
 Here are all the available boot flags for the Hyperdrive runtime:
 
-- `[home]`: (Required) Path to home directory.
-- `-p, --port <PORT>`: Port to bind for HTTP. Default is the first unbound port at or above 8080.
-- `--ws-port <PORT>`: Hyperdrive internal WebSockets protocol port. Default is the first unbound port at or above 9000.
-- `--tcp-port <PORT>`: Hyperdrive internal TCP protocol port. Default is the first unbound port at or above 10000.
-- `-v, --verbosity <VERBOSITY>`: Verbosity level: higher (up to 3)is more verbose. Default is 0.
-- `-l, --logging-off`: Run in non-logging mode. Do not write terminal output to file in .terminal_logs directory.
-- `-d, --detached`: Run in detached mode (don't accept input on terminal).
-- `--rpc <RPC>`: Add a WebSockets Optimism RPC URL at boot.
-- `--rpc-config <RPC_CONFIG_PATH>`: Add WebSockets RPC URLs specified in config at boot
-- `--password <PASSWORD>`: Node password (in double quotes).
-- `--max-log-size <MAX_LOG_SIZE_BYTES>`: Max size of all terminal logs in bytes. Setting to 0 means no size limit. Default is 16MB.
-- `--number-log-files <NUMBER_LOG_FILES>`: Number of terminal logs to rotate. Default is 4.
-- `--max-peers <MAX_PEERS>`: Maximum number of peers to hold active connections with. Default is 32.
-- `--max-passthroughs <MAX_PASSTHROUGHS>`: Maximum number of passthroughs to serve as a router. Default is 0.
-- `--soft-ulimit <SOFT_ULIMIT>`: Enforce a static maximum number of file descriptors. Default is fetched from system.
+```
+./hyperdrive -h
+A General Purpose Sovereign Cloud Computing Platform
+
+Usage: hyperdrive [OPTIONS] <HOME>
+
+Arguments:
+  <HOME>  Path to home directory
+
+Options:
+  -p, --port <PORT>
+          Port to bind [default: first unbound at or above 8080]
+      --ws-port <PORT>
+          Hyperdrive internal WebSockets protocol port [default: first unbound at or above 9000]
+      --tcp-port <PORT>
+          Hyperdrive internal TCP protocol port [default: first unbound at or above 10000]
+  -v, --verbosity <VERBOSITY>
+          Verbosity level: higher is more verbose [default: 0]
+  -l, --logging-off
+          Run in non-logging mode (toggled at runtime by CTRL+L): do not write all terminal output to file in .terminal_logs directory
+      --reveal-ip
+          If set to false, as an indirect node, always use routers to connect to other nodes.
+  -d, --detached
+          Run in detached mode (don't accept input)
+      --rpc <RPC>
+          Add a WebSockets RPC URL at boot
+      --rpc-config <RPC_CONFIG_PATH>
+          Add WebSockets RPC URLs specified in config at boot
+      --password <PASSWORD>
+          Node password (in double quotes)
+      --max-log-size <MAX_LOG_SIZE_BYTES>
+          Max size of all logs in bytes; setting to 0 -> no size limit [default: 16MB]
+      --number-log-files <NUMBER_LOG_FILES>
+          Number of logs to rotate [default: 4]
+      --max-peers <MAX_PEERS>
+          Maximum number of peers to hold active connections with [default: 32]
+      --max-passthroughs <MAX_PASSTHROUGHS>
+          Maximum number of passthroughs serve as a router [default: 0]
+      --soft-ulimit <SOFT_ULIMIT>
+          Enforce a static maximum number of file descriptors [default: fetched from system]
+      --process-verbosity <JSON_STRING>
+          ProcessId: verbosity JSON object [default: ]
+  -h, --help
+          Print help
+  -V, --version
+          Print version
+
+```
 
 When compiled with the `simulation-mode` feature, two additional flags are available:
 
-- `--fake-node-name <NAME>`: Name of fake node to boot.
-- `--fakechain-port <FAKECHAIN_PORT>`: Port to bind to for local anvil-run blockchain.
+```
+      --fake-node-name <NAME>
+          Name of fake node to boot
+      --fakechain-port <FAKECHAIN_PORT>
+          Port to bind to for local anvil-run blockchain
+```
+
 
 `RPC_CONFIG_PATH` must point to a file containing a JSON array of JSON objects with required key of `"url"` (whose value must be a string) and optional field of `"auth"`.
 `"auth"`, if included, must be a JSON object with one key, either `"Basic"`, `"Bearer"`, or `"Raw"`, and whose value must be a string.
@@ -160,7 +199,6 @@ The runtime distro processes are:
 The distro userspace packages are:
 
 - `app-store:sys`
-- `chess:sys`
 - `contacts:sys`
 - `homepage:sys`
 - `hns-indexer:sys`
@@ -209,20 +247,27 @@ A list of the terminal scripts included in this distro:
     - Example: `cat /terminal:sys/pkg/scripts.json`
 - `echo <text>`: print text to the terminal.
     - Example: `echo foo`
-- `help <command>`: print the help message for a command. Leave the command blank to print the help message for all commands.
+- `help <command>`: print the help message for a command.
+  Leave the command blank to print the help message for all commands.
 - `hi <name> <string>`: send a text message to another node's command line.
     - Example: `hi mothu.kino hello world`
-- `kfetch`: print system information a la neofetch. No arguments.
-- `kill <process-id>`: terminate a running process. This will bypass any restart behavior–use judiciously.
-    - Example: `kill chess:chess:sys`
-- `m <address> '<json>'`: send an inter-process message. <address> is formatted as <node>@<process_id>. <process_id> is formatted as <process_name>:<package_name>:<publisher_node>. JSON containing spaces must be wrapped in single-quotes (`''`).
+- `hfetch`: print system information a la neofetch.
+  No arguments.
+- `kill <process-id>`: terminate a running process.
+  This will bypass any restart behavior–use judiciously.
+    - Example: `kill chess:chess:template.os`
+- `m <address> '<json>'`: send an inter-process message.
+  <address> is formatted as <node>@<process-id>.
+  <process-id> is formatted as <process-name>:<package-name>:<publisher-node>.
+  JSON containing spaces must be wrapped in single-quotes (`''`).
     - Example: `m our@eth:distro:sys "SetPublic" -a 5`
     - the '-a' flag is used to expect a response with a given timeout
     - `our` will always be interpolated by the system as your node's name
 - `net-diagnostics`: print some useful networking diagnostic data.
 - `peer <name>`: print the peer's PKI info, if it exists.
 - `peers`: print the peers the node currently hold connections with.
-- `top <process_id>`: display kernel debugging info about a process. Leave the process ID blank to display info about all processes and get the total number of running processes.
+- `top <process_id>`: display kernel debugging info about a process.
+  Leave the process ID blank to display info about all processes and get the total number of running processes.
     - Example: `top net:distro:sys`
     - Example: `top`
 
@@ -232,11 +277,11 @@ This image expects a volume mounted at `/hyperdrive-home`.
 This volume may be empty or may contain another nodes data.
 It will be used as the home directory of your node.
 
-The image includes EXPOSE directives for TCP port `8080` and TCP port `9000`.
+The image includes EXPOSE directives for TCP ports `8080`, `9000`, and `10000`.
 Port `8080` is used for serving the Hyperdrive web dashboard over HTTP, and it may be mapped to a different port on the host.
-Port `9000` is optional and is only required for a direct node.
+Ports `9000` and `10000` are optional and are only required for direct nodes (to communicate over the network via WS and TCP, respectively).
 
-If you are running a direct node, you must map port `9000` to the same port on the host and on your router.
+If you are running a direct node, you must map port `9000` and `10000` to the same port on the host and on your router.
 Otherwise, your node will not be able to connect to the rest of the network as connection info is written to the chain, and this information is based on the view from inside the Docker container.
 
 To build a local Docker image, run the following command in this project root.
