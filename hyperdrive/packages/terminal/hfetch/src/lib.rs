@@ -71,7 +71,7 @@ fn init(our: Address, _args: String) -> String {
         return "failed to parse kernel response".to_string();
     };
     let num_processes = map.len();
-    print_bird(
+    print_data(
         &our,
         our_id,
         providers,
@@ -85,7 +85,7 @@ fn init(our: Address, _args: String) -> String {
     )
 }
 
-fn print_bird(
+fn print_data(
     our: &Address,
     our_id: net::Identity,
     providers: HashSet<eth::ProviderConfig>,
@@ -95,20 +95,18 @@ fn print_bird(
 ) -> String {
     format!(
         r#"
-{}
+                 {}
 
-Hyperware {}
+   ▄█    █▄      Hyperware {}
+  ███    ███
+  ███    ███     pubkey: {}
+ ▄███▄▄▄▄███▄▄   routing: {}
+▀▀███▀▀▀▀███▀
+  ███    ███     {} eth providers for chain IDs {}
+  ███    ███     {} active eth subscriptions
+  ███    █▀      {} outstanding eth requests
 
-pubkey: {}
-routing: {}
-
-{} eth providers for chain IDs {}
-{} active eth subscriptions
-{} outstanding eth requests
-
-
-
-{} running processes
+                 {} running processes
 "#,
         our.node(),
         version_from_cargo_toml(),
