@@ -16,7 +16,7 @@ Instead, check out the [Hyperware Book](https://book.hyperware.ai/), and in part
 If you want to get on the network, you can download a binary, rather than building it yourself, from [the releases page](https://github.com/hyperware-ai/hyperware/tags).
 Then follow the instructions to [install it](https://book.hyperware.ai/install.html) and [join the network](https://book.hyperware.ai/login.html).
 
-If you have questions, join the [Hyperware discord](https://discord.gg/TCgdca5Bjt) and drop us a line in `#dev-support`.
+If you have questions, join the [Hyperware discord](https://discord.com/invite/KaPXX7SFTD) and drop us a line in `#dev-support`.
 
 ## Setup
 
