@@ -2910,6 +2910,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "hfetch"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "hyperware_process_lib",
+ "rmp-serde",
+ "serde",
+ "serde_json",
+ "wit-bindgen",
+]
+
+[[package]]
 name = "hi"
 version = "0.1.0"
 dependencies = [
@@ -3664,18 +3676,6 @@ checksum = "505d1856a39b200489082f90d897c3f07c455563880bc5952e38eabf731c83b6"
 dependencies = [
  "digest 0.10.7",
  "sha3-asm",
-]
-
-[[package]]
-name = "kfetch"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "hyperware_process_lib",
- "rmp-serde",
- "serde",
- "serde_json",
- "wit-bindgen",
 ]
 
 [[package]]

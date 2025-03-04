@@ -69,7 +69,7 @@ async fn main() {
 
     let matches = app.get_matches();
     let home_directory_path = matches
-        .get_one::<String>("HOME")
+        .get_one::<String>("home")
         .expect("home directory required");
     if let Err(e) = tokio::fs::create_dir_all(home_directory_path).await {
         panic!("failed to create home directory: {e:?}");
@@ -724,7 +724,8 @@ fn build_command() -> Command {
         .version(version)
         .author("Sybil Technologies AG")
         .about("A General Purpose Sovereign Cloud Computing Platform")
-        .arg(arg!([HOME] "Path to home directory").required(true))
+        // `<>` make it required; lowercase for matching; value_name displays it as UPPERCASE
+        .arg(arg!(<home> "Path to home directory").value_name("HOME"))
         .arg(
             arg!(-p --port <PORT> "Port to bind [default: first unbound at or above 8080]")
                 .value_parser(value_parser!(u16)),
