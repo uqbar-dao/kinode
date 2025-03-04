@@ -59,6 +59,8 @@ const HYPERMAP_ADDRESS: &'static str = hypermap::HYPERMAP_ADDRESS;
 
 const DELAY_MS: u64 = 1_000; // 1s
 
+const SUBSCRIPTION_NUMBER: u64 = 1;
+
 pub struct State {
     /// the hypermap helper we are using
     pub hypermap: hypermap::Hypermap,
@@ -470,11 +472,17 @@ fn handle_message(our: &Address, state: &mut State, message: &Message) -> anyhow
                     timer::set_timer(DELAY_MS, Some(serde_json::to_vec(log)?));
                 }
             } else {
+                // unsubscribe to make sure we have cleaned up after ourselves;
+                //  drop Result since we don't care if no subscription exists,
+                //  just being diligent in case it does!
+                let _ = state.hypermap.provider.unsubscribe(SUBSCRIPTION_NUMBER);
                 // re-subscribe if error
-                state
-                    .hypermap
-                    .provider
-                    .subscribe_loop(1, app_store_filter(state), 1, 0);
+                state.hypermap.provider.subscribe_loop(
+                    SUBSCRIPTION_NUMBER,
+                    app_store_filter(state),
+                    1,
+                    0,
+                );
             }
         } else {
             let req = serde_json::from_slice::<ChainRequest>(message.body())?;
@@ -817,10 +825,15 @@ pub fn fetch_and_subscribe_logs(our: &Address, state: &mut State, last_saved_blo
     let filter = app_store_filter(state);
     // get past logs, subscribe to new ones.
     // subscribe first so we don't miss any logs
+    //
+    // unsubscribe to make sure we have cleaned up after ourselves;
+    //  drop Result since we don't care if no subscription exists,
+    //  just being diligent in case it does!
+    let _ = state.hypermap.provider.unsubscribe(SUBSCRIPTION_NUMBER);
     state
         .hypermap
         .provider
-        .subscribe_loop(1, filter.clone(), 1, 0);
+        .subscribe_loop(SUBSCRIPTION_NUMBER, filter.clone(), 1, 0);
     // println!("fetching old logs from block {last_saved_block}");
     for log in fetch_logs(
         &state.hypermap.provider,
