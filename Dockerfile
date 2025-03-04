@@ -42,3 +42,4 @@ CMD [ "/hyperdrive-home" ]
 
 EXPOSE 8080
 EXPOSE 9000
+EXPOSE 10000

@@ -59,6 +59,8 @@ const HYPERMAP_ADDRESS: &'static str = hypermap::HYPERMAP_ADDRESS;
 
 const DELAY_MS: u64 = 1_000; // 1s
 
+const SUBSCRIPTION_NUMBER: u64 = 1;
+
 pub struct State {
     /// the hypermap helper we are using
     pub hypermap: hypermap::Hypermap,
@@ -107,6 +109,15 @@ impl DB {
         }
 
         Ok(db)
+    }
+
+    pub fn drop_all(&self) -> anyhow::Result<()> {
+        self.inner.write(DROP_META_TABLE.into(), vec![], None)?;
+        self.inner.write(DROP_LISTINGS_TABLE.into(), vec![], None)?;
+        self.inner
+            .write(DROP_PUBLISHED_TABLE.into(), vec![], None)?;
+
+        Ok(())
     }
 
     pub fn get_last_saved_block(&self) -> anyhow::Result<u64> {
@@ -378,6 +389,18 @@ CREATE TABLE IF NOT EXISTS published (
     PRIMARY KEY (package_name, publisher_node)
 );";
 
+const DROP_META_TABLE: &str = "
+DROP TABLE IF EXISTS meta;
+";
+
+const DROP_LISTINGS_TABLE: &str = "
+DROP TABLE IF EXISTS listings;
+";
+
+const DROP_PUBLISHED_TABLE: &str = "
+DROP TABLE IF EXISTS published;
+";
+
 call_init!(init);
 fn init(our: Address) {
     loop {
@@ -449,11 +472,17 @@ fn handle_message(our: &Address, state: &mut State, message: &Message) -> anyhow
                     timer::set_timer(DELAY_MS, Some(serde_json::to_vec(log)?));
                 }
             } else {
+                // unsubscribe to make sure we have cleaned up after ourselves;
+                //  drop Result since we don't care if no subscription exists,
+                //  just being diligent in case it does!
+                let _ = state.hypermap.provider.unsubscribe(SUBSCRIPTION_NUMBER);
                 // re-subscribe if error
-                state
-                    .hypermap
-                    .provider
-                    .subscribe_loop(1, app_store_filter(state), 1, 0);
+                state.hypermap.provider.subscribe_loop(
+                    SUBSCRIPTION_NUMBER,
+                    app_store_filter(state),
+                    1,
+                    0,
+                );
             }
         } else {
             let req = serde_json::from_slice::<ChainRequest>(message.body())?;
@@ -519,9 +548,10 @@ fn handle_local_request(state: &mut State, req: ChainRequest) -> anyhow::Result<
         ChainRequest::Reset => {
             Response::new().body(&ChainResponse::ResetOk).send()?;
             println!("re-indexing state!");
-            // set last_saved_block to 0 to force re-index
+            // set last_saved_block to 0 & drop tables to force re-index
             state.last_saved_block = 0;
             state.db.set_last_saved_block(0)?;
+            state.db.drop_all()?;
             return Ok(true);
         }
     }
@@ -795,10 +825,15 @@ pub fn fetch_and_subscribe_logs(our: &Address, state: &mut State, last_saved_blo
     let filter = app_store_filter(state);
     // get past logs, subscribe to new ones.
     // subscribe first so we don't miss any logs
+    //
+    // unsubscribe to make sure we have cleaned up after ourselves;
+    //  drop Result since we don't care if no subscription exists,
+    //  just being diligent in case it does!
+    let _ = state.hypermap.provider.unsubscribe(SUBSCRIPTION_NUMBER);
     state
         .hypermap
         .provider
-        .subscribe_loop(1, filter.clone(), 1, 0);
+        .subscribe_loop(SUBSCRIPTION_NUMBER, filter.clone(), 1, 0);
     // println!("fetching old logs from block {last_saved_block}");
     for log in fetch_logs(
         &state.hypermap.provider,

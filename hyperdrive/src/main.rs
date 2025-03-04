@@ -69,7 +69,7 @@ async fn main() {
 
     let matches = app.get_matches();
     let home_directory_path = matches
-        .get_one::<String>("home")
+        .get_one::<String>("HOME")
         .expect("home directory required");
     if let Err(e) = tokio::fs::create_dir_all(home_directory_path).await {
         panic!("failed to create home directory: {e:?}");
@@ -724,7 +724,7 @@ fn build_command() -> Command {
         .version(version)
         .author("Sybil Technologies AG")
         .about("A General Purpose Sovereign Cloud Computing Platform")
-        .arg(arg!([home] "Path to home directory").required(true))
+        .arg(arg!([HOME] "Path to home directory").required(true))
         .arg(
             arg!(-p --port <PORT> "Port to bind [default: first unbound at or above 8080]")
                 .value_parser(value_parser!(u16)),
@@ -761,23 +761,23 @@ fn build_command() -> Command {
         .arg(arg!(--"rpc-config" <RPC_CONFIG_PATH> "Add WebSockets RPC URLs specified in config at boot"))
         .arg(arg!(--password <PASSWORD> "Node password (in double quotes)"))
         .arg(
-            arg!(--"max-log-size" <MAX_LOG_SIZE_BYTES> "Max size of all logs in bytes; setting to 0 -> no size limit (default 16MB)")
+            arg!(--"max-log-size" <MAX_LOG_SIZE_BYTES> "Max size of all logs in bytes; setting to 0 -> no size limit [default: 16MB]")
                 .value_parser(value_parser!(u64)),
         )
         .arg(
-            arg!(--"number-log-files" <NUMBER_LOG_FILES> "Number of logs to rotate (default 4)")
+            arg!(--"number-log-files" <NUMBER_LOG_FILES> "Number of logs to rotate [default: 4]")
                 .value_parser(value_parser!(u64)),
         )
         .arg(
-            arg!(--"max-peers" <MAX_PEERS> "Maximum number of peers to hold active connections with (default 32)")
+            arg!(--"max-peers" <MAX_PEERS> "Maximum number of peers to hold active connections with [default: 32]")
                 .value_parser(value_parser!(u64)),
         )
         .arg(
-            arg!(--"max-passthroughs" <MAX_PASSTHROUGHS> "Maximum number of passthroughs serve as a router (default 0)")
+            arg!(--"max-passthroughs" <MAX_PASSTHROUGHS> "Maximum number of passthroughs serve as a router [default: 0]")
                 .value_parser(value_parser!(u64)),
         )
         .arg(
-            arg!(--"soft-ulimit" <SOFT_ULIMIT> "Enforce a static maximum number of file descriptors (default fetched from system)")
+            arg!(--"soft-ulimit" <SOFT_ULIMIT> "Enforce a static maximum number of file descriptors [default: fetched from system]")
                 .value_parser(value_parser!(u64)),
         )
         .arg(
@@ -789,7 +789,7 @@ fn build_command() -> Command {
     let app = app
         .arg(arg!(--"fake-node-name" <NAME> "Name of fake node to boot"))
         .arg(
-            arg!(--"fakechain-port" <FAKECHAIN_PORT> "Port to bind to for fakechain")
+            arg!(--"fakechain-port" <FAKECHAIN_PORT> "Port to bind to for local anvil-run blockchain")
                 .value_parser(value_parser!(u16)),
         );
     app
