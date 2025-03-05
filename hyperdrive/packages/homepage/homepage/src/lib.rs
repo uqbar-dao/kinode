@@ -461,7 +461,7 @@ fn make_clock_widget() -> String {
             }}
         </style>
     </head>
-    <body style="margin: 0;">
+    <body style="margin: 0; overflow: hidden;">
         <div class="clock">
             <div class="marker primary" style="transform: rotate(0deg)"></div>
             <div class="marker" style="transform: rotate(30deg)"></div>

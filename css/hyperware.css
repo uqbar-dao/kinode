@@ -95,8 +95,7 @@ a {
 }
 
 a:hover {
-    color: light-dark(var(--orange), var(--dark-orange));
-    text-decoration: underline wavy;
+    text-decoration: underline;
 }
 
 /* Layout */
