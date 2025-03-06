@@ -176,6 +176,18 @@ function App() {
   return (
     <div>
       <div id="header">
+        <button
+          style={{ width: 'unset', marginRight: 'auto' }}
+          onClick={() => {
+            window.history.back();
+          }}>
+          <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 576 512"
+            height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M280.37 148.26L96 300.11V464a16 16 0 0 0 16 16l112.06-.29a16 16 0 0 0 15.92-16V368a16 16 0 0 1 16-16h64a16 16 0 0 1 16 16v95.64a16 16 0 0 0 16 16.05L464 480a16 16 0 0 0 16-16V300L295.67 148.26a12.19 12.19 0 0 0-15.3 0zM571.6 251.47L488 182.56V44.05a12 12 0 0 0-12-12h-56a12 12 0 0 0-12 12v72.61L318.47 43a48 48 0 0 0-61 0L4.34 251.47a12 12 0 0 0-1.6 16.9l25.5 31A12 12 0 0 0 45.15 301l235.22-193.74a12.19 12.19 0 0 1 15.3 0L530.9 301a12 12 0 0 0 16.9-1.6l25.5-31a12 12 0 0 0-1.7-16.93z">
+            </path>
+          </svg>
+        </button>
         <ConnectButton />
       </div>
       <h1>system diagnostics & settings</h1>
@@ -198,7 +210,6 @@ function App() {
             >
               Shutdown Node
             </button>
-            <br />
             <br />
             <button
               onClick={handleReset}
@@ -227,7 +238,7 @@ function App() {
 
         <article id="eth-rpc-providers">
           <h2>ETH RPC providers</h2>
-          <article id="provider-edits">
+          <div className="grow self-stretch flex flex-wrap gap-4">
             <form id="add-eth-provider" onSubmit={handleAddEthProvider}>
               <input type="number" name="chain-id" placeholder="1" />
               <input type="text" name="rpc-url" placeholder="wss://rpc-url.com" />
@@ -238,7 +249,7 @@ function App() {
               <input type="text" name="rpc-url" placeholder="wss://rpc-url.com" />
               <button type="submit">remove provider</button>
             </form>
-          </article>
+          </div>
           <ul id="providers">
             {appState.eth_rpc_providers?.map((provider, i) => (
               <li key={i}>{JSON.stringify(provider, undefined, 2)}</li>
@@ -324,7 +335,7 @@ function App() {
 
         <article id="hyperware-css">
           <h2>stylesheet editor</h2>
-          <textarea id="stylesheet-editor" defaultValue={appState.stylesheet} />
+          <textarea id="stylesheet-editor" defaultValue={appState.stylesheet} className="grow self-stretch" />
           <button id="save-stylesheet" onClick={handleSaveStylesheet}>update hyperware.css</button>
         </article>
       </main>

@@ -7,6 +7,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    -webkit-tap-highlight-color: transparent;
 }
 
 img,
@@ -16,6 +17,7 @@ canvas,
 svg {
     display: block;
     max-width: 100%;
+    height: auto;
 }
 
 input,
@@ -23,6 +25,8 @@ button,
 textarea,
 select {
     font-family: var(--font-family-main);
+    font-size: 16px;
+    /* Prevent zoom on iOS */
 }
 
 /* Variables */
@@ -42,6 +46,16 @@ select {
     --tasteful-dark: #1f1f1f;
 
     --font-family-main: 'Kode Mono', monospace;
+
+    /* Add modern CSS variables */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    --radius-sm: 0.25rem;
+    --radius-md: 0.375rem;
+    --radius-lg: 0.5rem;
+    --transition-fast: 150ms ease;
+    --transition-normal: 250ms ease;
 }
 
 /* Typography */
@@ -57,6 +71,7 @@ li,
 span {
     font-family: var(--font-family-main);
     color: light-dark(var(--off-black), var(--off-white));
+    line-height: 1.5;
 }
 
 p,
@@ -103,19 +118,21 @@ body {
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     background-color: light-dark(var(--tan), var(--tasteful-dark));
-    background-image: radial-gradient(circle at -1% -47%, #4700002b 7%, transparent 58.05%), radial-gradient(circle at 81% 210%, #d6430550 17%, transparent 77.05%);
+    background-image: radial-gradient(circle at -1% -47%, #4700002b 7%, transparent 58.05%),
+        radial-gradient(circle at 81% 210%, #d6430550 17%, transparent 77.05%);
     min-width: 100vw;
     min-height: 100vh;
+    overflow-x: hidden;
 }
 
 /* Sections */
 section {
     background-color: light-dark(var(--white), var(--maroon));
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 2rem;
-    margin-bottom: 2rem;
-    transition: transform 0.3s ease;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    transition: transform var(--transition-normal);
 }
 
 section:hover {
@@ -129,19 +146,26 @@ form {
     gap: 1rem;
 }
 
-form label {
+label {
     margin-bottom: 0.5rem;
     font-weight: bold;
+    display: block;
 }
 
-form input {
+input,
+textarea,
+select {
     padding: 0.75rem;
     border: 2px solid var(--orange);
-    border-radius: 4px;
-    transition: all 0.3s ease;
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+    background-color: light-dark(var(--white), var(--off-black));
+    color: light-dark(var(--off-black), var(--off-white));
 }
 
-form input:focus {
+input:focus,
+textarea:focus,
+select:focus {
     outline: none;
     border-color: var(--dark-orange);
     box-shadow: 0 0 0 3px rgba(255, 79, 0, 0.2);
@@ -149,26 +173,37 @@ form input:focus {
 
 /* Button styles */
 button {
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
     font-weight: bold;
     text-align: center;
     text-decoration: none;
     background-color: var(--orange);
     color: white;
     border: none;
-    border-radius: 4px;
-    transition: background-color 0.3s;
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+    cursor: pointer;
+    min-height: 44px;
+    min-width: 44px;
 }
 
 button:hover {
     background-color: var(--dark-orange);
+    transform: translateY(-1px);
+}
+
+button:active {
+    transform: translateY(0);
 }
 
 button:disabled {
     opacity: 0.5;
     cursor: not-allowed;
+    transform: none;
 }
 
 button.secondary {
@@ -180,4 +215,143 @@ button.secondary {
 button.secondary:hover {
     background-color: var(--orange);
     color: white;
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+    :root {
+        --shadow-md: 0 2px 4px -1px rgb(0 0 0 / 0.1);
+        --shadow-lg: 0 4px 6px -2px rgb(0 0 0 / 0.1);
+    }
+
+    section {
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border-radius: var(--radius-md);
+    }
+
+    form input,
+    form textarea,
+    form select {
+        font-size: 16px;
+        /* Prevent zoom on iOS */
+        padding: 0.875rem;
+    }
+
+    button {
+        width: 100%;
+        padding: 0.875rem;
+    }
+
+    /* Improve touch targets */
+    a,
+    button,
+    input[type="button"],
+    input[type="submit"] {
+        min-height: 44px;
+        min-width: 44px;
+    }
+
+    /* Add smooth scrolling */
+    html {
+        scroll-behavior: smooth;
+    }
+
+    /* Improve form spacing */
+    form {
+        gap: 0.75rem;
+    }
+
+    /* Better section spacing */
+    section+section {
+        margin-top: 1rem;
+    }
+}
+
+/* Dark mode optimizations */
+@media (prefers-color-scheme: dark) {
+
+    form input,
+    form textarea,
+    form select {
+        background-color: var(--off-black);
+        color: var(--off-white);
+    }
+
+    button.secondary {
+        background-color: var(--off-black);
+    }
+}
+
+
+.mb-2 {
+    margin-bottom: 0.5rem;
+}
+
+.mt-2 {
+    margin-top: 0.5rem;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.gap-4 {
+    gap: 1rem;
+}
+
+.h-screen {
+    height: 100vh;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.place-content-center {
+    place-content: center;
+}
+
+.place-items-center {
+    place-items: center;
+}
+
+.self-stretch {
+    align-self: stretch;
+}
+
+.text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+}
+
+.text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+}
+
+.leading-6 {
+    line-height: 1.5rem;
+}
+
+.p-4 {
+    padding: 1rem;
+}
+
+.px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.py-4 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 }
