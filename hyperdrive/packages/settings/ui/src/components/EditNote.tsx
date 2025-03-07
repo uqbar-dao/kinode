@@ -76,14 +76,21 @@ const EditNote: React.FC<EditNoteProps> = ({ label: initialLabel, tba, field_pla
                     }
                 }}
                 className="note-input"
-                style={{ minWidth: '200px' }}
             />}
-            <input type="text" placeholder={field_placeholder} value={value} onChange={(e) => setValue(e.target.value)} className="note-input" style={{ minWidth: '400px' }} />
+            <input
+                type="text"
+                placeholder={field_placeholder}
+                value={value}
+                onChange={(e) => setValue(e.target.value)}
+                className="note-input"
+            />
             <button
                 onClick={handleAddNote}
                 className={`add-note-button ${isPending ? 'loading' : ''}`}
                 disabled={isPending}
-            >Submit</button>
+            >
+                Submit
+            </button>
 
         </div>
     );

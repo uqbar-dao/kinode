@@ -100,10 +100,12 @@ header button {
   gap: 10px;
   margin-bottom: 0;
   background-color: transparent !important;
-  padding: 0em !important;
+  padding: 0em;
 }
 
 .widget {
+  display: flex;
+  flex-direction: column;
   color: light-dark(var(--tasteful-dark), var(--off-white));
   background-color: light-dark(var(--off-white), var(--tasteful-dark));
   border: 1px solid light-dark(var(--tasteful-dark), var(--off-white));
@@ -117,6 +119,7 @@ header button {
 }
 
 .widget iframe {
+  flex-grow: 1;
   border: none;
   width: 100%;
   height: 100%;
@@ -190,6 +193,7 @@ footer {
     margin: 0;
     padding: 0;
     overflow: hidden;
+    -webkit-overflow-scrolling: touch;
   }
 
   #homepage {
@@ -205,10 +209,27 @@ footer {
     flex-direction: column;
     overflow-y: auto;
     padding-bottom: 60px;
+    border-radius: 0;
+    padding: 0;
+    border-left: none;
+    border-right: none;
   }
 
   header {
     flex-shrink: 0;
+    padding: 0.75em;
+    gap: 0.5em;
+    border-radius: 0;
+  }
+
+  header h2 {
+    font-size: 1.25em;
+  }
+
+  header button {
+    padding: 8px;
+    min-width: 44px;
+    min-height: 44px;
   }
 
   #widgets-container {
@@ -217,10 +238,14 @@ footer {
     flex-direction: column;
     overflow-y: auto;
     max-height: none;
+    border-radius: 0;
+    padding: 0.5em;
   }
 
   #widgets {
     flex: 1;
+    padding: 0.5em;
+    padding-bottom: 10vh;
   }
 
   #all-apps {
@@ -231,12 +256,15 @@ footer {
     background-color: var(--off-black);
     z-index: 1000;
     padding: 0;
+    border-radius: 0;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
   }
 
   .apps-grid {
     display: none;
-    max-height: 60vh;
+    max-height: 50vh;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .apps-grid.expanded {
@@ -245,12 +273,119 @@ footer {
   }
 
   .apps-grid .app-display {
-    border-bottom: 0.5px solid rgba(255, 255, 255, 0.2);
-    padding: 0.75em 1em;
+    padding: 1em;
+    display: flex;
+    align-items: center;
+    gap: 1em;
   }
 
-  .apps-grid .app-display:last-child {
-    border-bottom: none;
+  .app-display {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .expand-button {
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1em;
+    touch-action: manipulation;
+  }
+
+  .modal-inner {
+    width: 90%;
+    max-width: 400px;
+    max-height: 80vh;
+    margin: 10vh auto;
+    border-radius: 12px;
+  }
+
+  .widget-settings-item {
+    padding: 1em;
+    margin: 0.5em 0;
+    border-radius: 8px;
+  }
+
+  .widget-settings button {
+    min-height: 44px;
+    padding: 0.75em 1em;
+    margin: 0.5em 0;
+    width: 100%;
+    border-radius: 8px;
+  }
+
+  .drag-handle {
+    display: none;
+  }
+
+  .app-wrapper,
+  .widget-wrapper {
+    touch-action: manipulation;
+  }
+
+  .modal {
+    padding: 1em;
+  }
+
+  .modal-header {
+    padding: 1em;
+    gap: 0.5em;
+  }
+
+  .modal-header button {
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0.5em;
+  }
+
+  /* Add smooth scrolling for iOS momentum scroll */
+  *:where([class*="container"], [class*="grid"]) {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Improve tap targets */
+  button,
+  a,
+  input[type="button"],
+  input[type="submit"] {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 0.75em;
+  }
+
+  .widget {
+    width: 100%;
+    height: auto;
+    min-height: 300px;
+    margin: 0 0 1em 0;
+    border-radius: 12px;
+  }
+
+  .widget .bottom-bar {
+    display: flex;
+    position: relative;
+    padding: 8px;
+    height: 40px;
+  }
+
+  .widget:hover .bottom-bar {
+    background-color: var(--blue);
+  }
+}
+
+@media (max-width: 480px) {
+  .widget {
+    min-height: 250px;
+  }
+
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  header button {
+    margin: 4px 0;
   }
 }
 
