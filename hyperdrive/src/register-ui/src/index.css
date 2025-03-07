@@ -12,14 +12,14 @@
 
 .form-input {
   padding: 0.75rem;
-  border: 2px solid var(--orange);
+  border: 2px solid var(--primary-color);
   border-radius: 4px;
   transition: all 0.3s ease;
 }
 
 .form-input:focus {
   outline: none;
-  border-color: var(--dark-orange);
+  border-color: var(--primary-light);
   box-shadow: 0 0 0 3px rgba(255, 79, 0, 0.2);
 }
 
@@ -136,7 +136,7 @@
 
 .hns-suffix {
   padding: 0.5rem;
-  background-color: var(--blue);
+  background-color: var(--secondary-color);
   border: 1px solid var(--tasteful-dark);
   border-left: none;
   border-radius: 0 4px 4px 0;
@@ -185,7 +185,7 @@
   height: 25px;
   width: 25px;
   background-color: #eee;
-  border: 2px solid var(--orange);
+  border: 2px solid var(--primary-color);
   border-radius: 4px;
 }
 
@@ -194,7 +194,7 @@
 }
 
 .checkbox-container input:checked~.checkmark {
-  background-color: var(--orange);
+  background-color: var(--primary-color);
 }
 
 .checkmark:after {
@@ -238,7 +238,7 @@
 }
 
 .file-input-label:hover .button {
-  background-color: var(--dark-orange);
+  background-color: var(--primary-light);
   color: var(--off-white);
 }
 
@@ -257,7 +257,7 @@ button.back {
   width: auto !important;
   padding: 5px !important;
   border: none !important;
-  background-color: var(--orange) !important;
+  background-color: var(--primary-color) !important;
 }
 
 /* Progress Bar Styles */
@@ -331,7 +331,7 @@ button.back {
 }
 
 .step.clickable.completed:hover .step-number {
-  background: var(--dark-orange);
+  background: var(--primary-light);
   opacity: 0.9;
 }
 
@@ -346,12 +346,12 @@ button.back {
   font-size: 0.8rem;
   border-radius: 50%;
   background: var(--off-white);
-  border: 2px solid var(--orange);
+  border: 2px solid var(--primary-color);
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 600;
-  color: var(--orange);
+  color: var(--primary-color);
   transition: all 0.3s ease;
   position: relative;
 }
@@ -366,7 +366,7 @@ button.back {
 }
 
 .step.active .step-number {
-  background: var(--orange);
+  background: var(--primary-color);
   color: var(--off-white);
   transform: scale(1.1);
 }
@@ -377,15 +377,15 @@ button.back {
 }
 
 .step.completed .step-number {
-  background: var(--dark-orange);
-  border-color: var(--dark-orange);
+  background: var(--primary-light);
+  border-color: var(--primary-light);
   color: var(--off-white);
 }
 
 .step-label {
   margin-top: 0.6rem;
   font-size: 0.75rem;
-  color: var(--orange);
+  color: var(--primary-color);
   font-weight: 500;
   transition: all 0.3s ease;
   text-align: center;
@@ -412,7 +412,7 @@ button.back {
 }
 
 .connector.active {
-  background: linear-gradient(90deg, var(--orange), var(--dark-orange));
+  background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
   animation: fillLine 0.4s ease-out forwards;
 }
 
@@ -430,7 +430,7 @@ button.back {
 
 .selected-name span {
   font-weight: 600;
-  color: var(--orange);
+  color: var(--primary-color);
   margin-left: 0.3rem;
 }
 

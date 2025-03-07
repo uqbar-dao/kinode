@@ -25,7 +25,7 @@ const ResetButton: React.FC = () => {
             <div className="tooltip-container">
                 <button
                     onClick={() => setIsOpen(true)}
-                    className="button danger"
+                    className="button tertiary"
                     style={{ fontSize: '0.9rem' }}
                 >
                     Reset Store
@@ -59,7 +59,7 @@ const ResetButton: React.FC = () => {
                             <button
                                 onClick={handleReset}
                                 disabled={isLoading}
-                                className="button danger"
+                                className="button tertiary"
                             >
                                 {isLoading ? 'Resetting...' : 'Reset Store'}
                             </button>

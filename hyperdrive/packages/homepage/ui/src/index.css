@@ -130,12 +130,20 @@ header button {
   position: absolute;
   bottom: 0;
   border-top: 1px solid light-dark(black, white);
-  background-color: var(--blue);
+  background-color: var(--secondary-color);
   width: 100%;
   padding: 2px;
   flex-direction: row;
   justify-content: space-between;
   border-color: var(--off-white);
+}
+
+[id^="hide-widget-"] {
+  cursor: pointer;
+}
+
+[id^="hide-widget-"]:hover {
+  text-decoration: underline;
 }
 
 .widget:hover .bottom-bar {
@@ -145,6 +153,7 @@ header button {
 .widget .bottom-bar p {
   font-size: 0.8em;
   cursor: default;
+  color: var(--off-black);
 }
 
 footer {
@@ -367,10 +376,6 @@ footer {
     position: relative;
     padding: 8px;
     height: 40px;
-  }
-
-  .widget:hover .bottom-bar {
-    background-color: var(--blue);
   }
 }
 

@@ -624,7 +624,13 @@ fn make_widget(state: &SettingsState) -> String {
 
         <br />
 
-        <button id="refresh" onclick="this.innerHTML='⌛'; fetch('/settings:settings:sys/refresh').then(() => setTimeout(() => window.location.reload(), 1000))" style="width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; padding: 0; font-size: 24px;">⟳</button>
+        <button 
+            id="refresh" 
+            onclick="this.innerHTML='⌛'; fetch('/settings:settings:sys/refresh').then(() => setTimeout(() => window.location.reload(), 1000))" 
+        >
+            <span style="font-size: 1.5em;">⟳</span>
+            <span>refresh</span>
+        </button>
 
         <br />
 

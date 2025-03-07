@@ -266,7 +266,7 @@ export default function PublishPage() {
                   <span>{app.metadata?.name || app.package_id.package_name}</span>
                 </Link>
 
-                <button onClick={() => unpublishPackage(app.package_id.package_name, app.package_id.publisher_node)} className="danger">
+                <button onClick={() => unpublishPackage(app.package_id.package_name, app.package_id.publisher_node)} className="tertiary">
                   Unpublish
                 </button>
               </li>

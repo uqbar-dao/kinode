@@ -227,7 +227,7 @@ button.kill-process {
 .settings-form-group input:focus,
 .settings-form-group textarea:focus {
     outline: none;
-    border-color: var(--blue);
+    border-color: var(--secondary-color);
     box-shadow: 0 0 0 2px rgba(43, 136, 217, 0.2);
 }
 
@@ -247,23 +247,23 @@ button.kill-process {
 }
 
 .settings-button-primary {
-    background: var(--blue);
+    background: var(--secondary-color);
     color: white;
     border: none;
 }
 
 .settings-button-primary:hover {
-    background: var(--dark-orange);
+    background: var(--primary-light);
 }
 
 .settings-button-secondary {
     background: transparent;
-    color: var(--blue);
-    border: 2px solid var(--blue);
+    color: var(--secondary-color);
+    border: 2px solid var(--secondary-color);
 }
 
 .settings-button-secondary:hover {
-    background: var(--blue);
+    background: var(--secondary-color);
     color: white;
 }
 

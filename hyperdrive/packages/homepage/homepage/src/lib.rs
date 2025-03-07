@@ -424,7 +424,7 @@ fn make_clock_widget() -> String {
                 width: 2px;
                 height: 90px;
                 margin-left: -1px;
-                background-color: var(--orange);
+                background-color: var(--tertiary-color);
             }}
             .center {{
                 width: 12px;
