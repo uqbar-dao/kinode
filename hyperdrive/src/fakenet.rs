@@ -10,7 +10,7 @@ use lib::core::{Identity, NodeRouting};
 use std::net::Ipv4Addr;
 use std::str::FromStr;
 
-use crate::{keygen, sol::*, HYPERMAP_ADDRESS, KINO_ACCOUNT_IMPL, MULTICALL_ADDRESS};
+use crate::{keygen, sol::*, HYPERMAP_ADDRESS, HYPER_ACCOUNT_IMPL, MULTICALL_ADDRESS};
 
 const FAKE_DOTDEV_TBA: &str = "0xcc3A576b8cE5340f5CE23d0DDAf133C0822C3B6d";
 const FAKE_DOTOS_TBA: &str = "0xbE46837617f8304Aa5E6d0aE62B74340251f48Bf";
@@ -133,7 +133,7 @@ pub async fn mint_local(
                 to: wallet_address,
                 label: Bytes::from(label.as_bytes().to_vec()),
                 initialization: execute_call.into(),
-                implementation: Address::from_str(KINO_ACCOUNT_IMPL).unwrap(),
+                implementation: Address::from_str(HYPER_ACCOUNT_IMPL).unwrap(),
             }
             .abi_encode(),
             minter,

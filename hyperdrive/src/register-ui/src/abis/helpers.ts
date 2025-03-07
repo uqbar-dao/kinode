@@ -145,7 +145,7 @@ export const generateNetworkingKeys = async ({
     //         our_address,
     //         encodePacked(["bytes"], [stringToHex(label)]),
     //         initCall,
-    //         KINO_ACCOUNT_IMPL,
+    //         HYPER_ACCOUNT_IMPL,
     //     ]
     // })
 
