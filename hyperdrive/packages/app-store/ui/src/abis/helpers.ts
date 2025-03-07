@@ -1,4 +1,4 @@
-import { multicallAbi, hypermapAbi, mechAbi, HYPERMAP, MULTICALL, KINO_ACCOUNT_UPGRADABLE_IMPL } from "./";
+import { multicallAbi, hypermapAbi, mechAbi, HYPERMAP, MULTICALL, HYPER_ACCOUNT_UPGRADABLE_IMPL } from "./";
 import { encodeFunctionData, encodePacked, stringToHex } from "viem";
 
 export function encodeMulticalls(metadataUri: string, metadataHash: string) {
@@ -52,7 +52,7 @@ export function encodeIntoMintCall(multicalls: `0x${string}`, our_address: `0x${
             our_address,
             encodePacked(["bytes"], [stringToHex(app_name)]),
             initCall,
-            KINO_ACCOUNT_UPGRADABLE_IMPL,
+            HYPER_ACCOUNT_UPGRADABLE_IMPL,
         ]
     })
     return mintCall;

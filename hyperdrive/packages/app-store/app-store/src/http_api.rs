@@ -99,25 +99,31 @@ fn make_widget() -> String {
         #latest-apps {
             display: flex;
             flex-wrap: wrap;
-            padding-left: 1rem;
             align-items: center;
             border-radius: 1rem;
             height: 100vh;
             width: 100vw;
             overflow-y: auto;
             padding-bottom: 4rem;
+            gap: 0.5rem;
         }
 
         .app {
-            padding: 1rem 1rem 1rem 0rem;
+            padding: 1rem;
             display: flex;
             flex-grow: 1;
             align-items: center;
-            border-bottom: 1px solid rgba(0,0,0,0.1)
+            border-bottom: 1px solid light-dark(rgba(0,0,0,0.1), rgba(255,255,255,0.1));
             cursor: pointer;
             font-family: sans-serif;
             width: 100%;
             min-height: 100px;
+            text-decoration: none !important;
+            border-radius: 0.25rem;
+        }
+
+        .app:hover {
+            background-color: light-dark(rgba(0,0,0,0.1), rgba(255,255,255,0.1));
         }
 
         .app-image {

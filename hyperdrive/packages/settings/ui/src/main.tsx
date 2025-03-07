@@ -9,7 +9,7 @@ import { base } from 'wagmi/chains'
 import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
 
 import App from './App.tsx'
-
+import './index.css'
 import '@rainbow-me/rainbowkit/styles.css';
 
 globalThis.Buffer = Buffer

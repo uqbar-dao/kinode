@@ -7,7 +7,7 @@ import DirectCheckbox from "../components/DirectCheckbox";
 
 import { useAccount, useWaitForTransactionReceipt, useSendTransaction } from "wagmi";
 import { useConnectModal, useAddRecentTransaction } from "@rainbow-me/rainbowkit"
-import { tbaMintAbi, generateNetworkingKeys, KINO_ACCOUNT_IMPL } from "../abis";
+import { tbaMintAbi, generateNetworkingKeys, HYPER_ACCOUNT_IMPL } from "../abis";
 import { encodePacked, encodeFunctionData, stringToHex } from "viem";
 
 interface MintCustomNameProps extends PageProps { }
@@ -91,7 +91,7 @@ function MintCustom({
                 address,
                 encodePacked(["bytes"], [stringToHex(name)]),
                 initCall,
-                KINO_ACCOUNT_IMPL,
+                HYPER_ACCOUNT_IMPL,
             ],
         })
 

@@ -5,7 +5,7 @@ import { PageProps } from "../lib/types";
 
 import { useAccount, useWaitForTransactionReceipt, useSendTransaction } from "wagmi";
 import { useConnectModal, useAddRecentTransaction } from "@rainbow-me/rainbowkit"
-import { generateNetworkingKeys, KINO_ACCOUNT_IMPL, DOTOS, tbaMintAbi } from "../abis";
+import { generateNetworkingKeys, HYPER_ACCOUNT_IMPL, DOTOS, tbaMintAbi } from "../abis";
 import { encodePacked, encodeFunctionData, stringToHex } from "viem";
 
 interface RegisterOsNameProps extends PageProps { }
@@ -81,7 +81,7 @@ function MintDotOsName({
         address,
         encodePacked(["bytes"], [stringToHex(name)]),
         initCall,
-        KINO_ACCOUNT_IMPL,
+        HYPER_ACCOUNT_IMPL,
       ],
     })
 
