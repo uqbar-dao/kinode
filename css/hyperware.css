@@ -32,6 +32,16 @@ select {
 /* Variables */
 :root {
     color-scheme: light dark;
+    --neon-green: #E5FF44;
+    --neon-green-light: #E5FF4488;
+    --neon-green-xlight: #E5FF4444;
+    --neon-blue: #44E5FF;
+    --neon-red: #FF44E5;
+    --neon-yellow: #FFFF44;
+    --neon-purple: #E544FF;
+    --neon-orange: #FF9944;
+    --neon-pink: #FF44B2;
+    --neon-cyan: #44FFE5;
     --orange: #FF4F00;
     --dark-orange: #cc4100;
     --blue: #2B88D9;
@@ -45,6 +55,16 @@ select {
     --gray: #657b83;
     --tasteful-dark: #1f1f1f;
 
+    --primary-color: var(--neon-green);
+    --primary-light: var(--neon-green-light);
+    --primary-xlight: var(--neon-green-xlight);
+    --secondary-color: var(--neon-blue);
+    --tertiary-color: var(--neon-red);
+    --quaternary-color: var(--neon-yellow);
+    --quinary-color: var(--neon-purple);
+    --senary-color: var(--neon-orange);
+    --septenary-color: var(--neon-pink);
+
     --font-family-main: 'Kode Mono', monospace;
 
     /* Add modern CSS variables */
@@ -56,6 +76,7 @@ select {
     --radius-lg: 0.5rem;
     --transition-fast: 150ms ease;
     --transition-normal: 250ms ease;
+    --button-border-width: 2px;
 }
 
 /* Typography */
@@ -67,8 +88,7 @@ h5,
 h6,
 p,
 label,
-li,
-span {
+li {
     font-family: var(--font-family-main);
     color: light-dark(var(--off-black), var(--off-white));
     line-height: 1.5;
@@ -105,7 +125,7 @@ h6 {
 
 a {
     font-family: var(--font-family-main);
-    color: light-dark(var(--blue), var(--orange));
+    color: light-dark(var(--secondary-colorndary-colorndary-color), var(--primary-color));
     text-decoration: none;
 }
 
@@ -118,8 +138,7 @@ body {
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     background-color: light-dark(var(--tan), var(--tasteful-dark));
-    background-image: radial-gradient(circle at -1% -47%, #4700002b 7%, transparent 58.05%),
-        radial-gradient(circle at 81% 210%, #d6430550 17%, transparent 77.05%);
+    background-image: radial-gradient(circle at 81% 210%, var(--primary-light) 17%, transparent 77.05%);
     min-width: 100vw;
     min-height: 100vh;
     overflow-x: hidden;
@@ -156,7 +175,7 @@ input,
 textarea,
 select {
     padding: 0.75rem;
-    border: 2px solid var(--orange);
+    border: var(--button-border-width) solid var(--primary-color);
     border-radius: var(--radius-md);
     transition: all var(--transition-fast);
     background-color: light-dark(var(--white), var(--off-black));
@@ -167,8 +186,11 @@ input:focus,
 textarea:focus,
 select:focus {
     outline: none;
-    border-color: var(--dark-orange);
-    box-shadow: 0 0 0 3px rgba(255, 79, 0, 0.2);
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 3px var(--primary-xlight);
+    animation: shine 0.4s ease-out;
+    background-size: 200% 100%;
+    background-image: linear-gradient(45deg, transparent 50%, var(--primary-xlight) 51%, var(--primary-light) 52%, transparent);
 }
 
 /* Button styles */
@@ -177,13 +199,14 @@ button {
     align-items: center;
     justify-content: center;
     padding: 0.75rem 1.5rem;
+    gap: 1rem;
     font-size: 1rem;
     font-weight: bold;
     text-align: center;
     text-decoration: none;
-    background-color: var(--orange);
-    color: white;
-    border: none;
+    background-color: var(--primary-color);
+    color: var(--off-black);
+    border: var(--button-border-width) solid transparent;
     border-radius: var(--radius-md);
     transition: all var(--transition-fast);
     cursor: pointer;
@@ -192,8 +215,9 @@ button {
 }
 
 button:hover {
-    background-color: var(--dark-orange);
-    transform: translateY(-1px);
+    background-color: light-dark(var(--off-white), var(--off-black));
+    color: var(--primary-color);
+    border: var(--button-border-width) solid var(--primary-color);
 }
 
 button:active {
@@ -208,14 +232,29 @@ button:disabled {
 
 button.secondary {
     background-color: light-dark(var(--off-white), var(--off-black));
-    color: var(--orange);
-    border: 2px solid var(--orange);
+    color: light-dark(var(--off-black), var(--off-white));
+    border: var(--button-border-width) solid light-dark(var(--off-black), var(--off-white));
 }
 
 button.secondary:hover {
-    background-color: var(--orange);
-    color: white;
+    background-color: light-dark(var(--off-black), var(--off-white));
+    color: light-dark(var(--off-white), var(--off-black));
+    border: var(--button-border-width) solid light-dark(var(--off-white), var(--off-black));
 }
+
+button.tertiary {
+    background-color: var(--tertiary-color);
+    color: var(--off-black);
+    border: var(--button-border-width) solid transparent;
+}
+
+button.tertiary:hover {
+    background-color: light-dark(var(--off-white), var(--off-black));
+    color: var(--tertiary-color);
+    border: var(--button-border-width) solid var(--tertiary-color);
+}
+
+
 
 /* Mobile Optimizations */
 @media (max-width: 768px) {
@@ -354,4 +393,14 @@ button.secondary:hover {
 .py-4 {
     padding-top: 1rem;
     padding-bottom: 1rem;
+}
+
+@keyframes shine {
+    0% {
+        background-position: 200% 0%;
+    }
+
+    100% {
+        background-position: 0% 0%;
+    }
 }

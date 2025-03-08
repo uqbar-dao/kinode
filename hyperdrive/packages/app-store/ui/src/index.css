@@ -48,12 +48,12 @@ h3,
 h4,
 h5,
 h6 {
-    color: var(--orange);
+    color: var(--primary-color);
     margin-bottom: 1rem;
 }
 
 a {
-    color: var(--blue);
+    color: var(--secondary-color);
     text-decoration: none;
 }
 
@@ -95,7 +95,7 @@ a:hover {
 }
 
 .header-left nav a {
-    color: var(--orange);
+    color: var(--primary-color);
     text-decoration: none;
     padding: 0.5rem;
     border-radius: var(--border-radius);
@@ -106,7 +106,7 @@ a:hover {
 
 .header-left nav a:hover,
 .header-left nav a.active {
-    background-color: var(--orange);
+    background-color: var(--primary-color);
     color: var(--text-light);
 }
 
@@ -149,7 +149,7 @@ button {
     height: 40px;
     font-weight: 500;
     padding: 0.5rem 1rem;
-    background-color: var(--orange);
+    background-color: var(--primary-color);
     color: var(--text-light);
     border: none;
     border-radius: var(--border-radius);
@@ -157,7 +157,7 @@ button {
 }
 
 button:hover {
-    background-color: var(--dark-orange);
+    background-color: var(--primary-light);
 }
 
 button:disabled {
@@ -165,23 +165,15 @@ button:disabled {
     cursor: not-allowed;
 }
 
-button.danger {
-    background-color: var(--red);
-}
-
-button.danger:hover {
-    background-color: color-mix(in srgb, var(--red) 85%, black);
-}
-
 /*Download Button */
 .download-btn {
-    background: var(--orange);
+    background: var(--primary-color);
     color: var(--text-light);
     border: none;
 }
 
 .download-btn:hover {
-    background: var(--dark-orange);
+    background: var(--primary-light);
 }
 
 /* Notification Button */
@@ -269,7 +261,7 @@ td {
 }
 
 .message.info {
-    background-color: var(--blue);
+    background-color: var(--secondary-color);
     color: var(--text-light);
 }
 
@@ -374,7 +366,7 @@ div.app-header {
 }
 
 .app-warning {
-    background: var(--orange) !important;
+    background: var(--primary-color) !important;
     color: var(--text-light);
     padding: 1rem;
     margin-bottom: 1rem;
@@ -444,23 +436,23 @@ div.app-header {
 }
 
 .primary {
-    background-color: var(--orange);
+    background-color: var(--primary-color);
     color: var(--text-light);
 }
 
 .primary:hover:not(:disabled) {
-    background-color: var(--dark-orange);
+    background-color: var(--primary-light);
     color: var(--text-light);
 }
 
 .secondary {
     background-color: light-dark(var(--surface-light), var(--surface-dark));
-    color: var(--orange);
-    border: 2px solid var(--orange);
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
 }
 
 .secondary:hover:not(:disabled) {
-    background-color: var(--orange);
+    background-color: var(--primary-color);
     color: var(--text-light);
 }
 
@@ -472,13 +464,13 @@ div.app-header {
 }
 
 .action-button.download-button {
-    background: var(--orange);
+    background: var(--primary-color);
     color: var(--text-light);
     border: none;
 }
 
 .action-button.download-button:hover:not(:disabled) {
-    background: var(--dark-orange);
+    background: var(--primary-light);
 }
 
 .action-button.download-button:disabled {
@@ -592,7 +584,7 @@ div.app-header {
 
 .search-bar input:focus {
     outline: none;
-    border-color: var(--orange);
+    border-color: var(--primary-color);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -680,11 +672,11 @@ div.app-header {
 }
 
 .network-icon {
-    color: var(--orange);
+    color: var(--primary-color);
 }
 
 .capability-icon {
-    color: var(--blue);
+    color: var(--secondary-color);
 }
 
 .private-icon {
@@ -751,7 +743,7 @@ div.app-header {
 }
 
 .badge {
-    background-color: var(--orange);
+    background-color: var(--primary-color);
     color: var(--text-light);
     border-radius: 50%;
     padding: 0.25rem 0.5rem;
@@ -806,7 +798,7 @@ div.app-header {
 }
 
 .dismiss-button:hover {
-    color: var(--orange);
+    color: var(--primary-color);
 }
 
 .progress-bar {
@@ -819,7 +811,7 @@ div.app-header {
 
 .progress {
     height: 100%;
-    background-color: var(--orange);
+    background-color: var(--primary-color);
     transition: width 0.3s ease;
 }
 
@@ -860,7 +852,7 @@ div.app-header {
 }
 
 .modal-close:hover {
-    color: var(--orange);
+    color: var(--primary-color);
 }
 
 .notification-button.has-errors {
@@ -985,7 +977,7 @@ div.app-header {
 }
 
 .package-list .app-name:hover {
-    color: var(--orange);
+    color: var(--primary-color);
 }
 
 .package-icon {
@@ -1026,7 +1018,7 @@ div.app-header {
 }
 
 .section-title {
-    color: var(--orange);
+    color: var(--primary-color);
     font-size: 1.25rem;
     margin-bottom: 1rem;
 }
@@ -1080,7 +1072,7 @@ div.app-header {
 }
 
 .update-actions .action-button.retry:hover {
-    color: var(--blue);
+    color: var(--secondary-color);
 }
 
 .update-actions .action-button.clear:hover {
@@ -1099,7 +1091,7 @@ div.app-header {
 }
 
 .manifest-info {
-    color: var(--orange);
+    color: var(--primary-color);
     font-size: 0.9rem;
     margin-bottom: 0.5rem;
 }
@@ -1159,18 +1151,6 @@ div.app-header {
     color: light-dark(var(--text-secondary), var(--text));
 }
 
-.retry-button {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1rem;
-    border-radius: 0.375rem;
-    font-size: 1rem;
-    background-color: light-dark(var(--surface-light), var(--surface-dark));
-    color: var(--orange);
-    border: 1px solid var(--orange);
-    transition: background-color 0.2s, color 0.2s;
-}
 
 .error-count {
     padding: 0.25rem 0.5rem;
@@ -1188,18 +1168,6 @@ div.app-header {
     margin-bottom: 1.5rem;
 }
 
-.nav-button {
-    display: flex;
-    align-items: center;
-    gap: 2;
-    padding: 0.75rem 1rem;
-    border-radius: 0.375rem;
-    font-size: 1rem;
-    background-color: light-dark(var(--surface-light), var(--surface-dark));
-    color: var(--orange);
-    border: 1px solid var(--orange);
-    transition: background-color 0.2s, color 0.2s;
-}
 
 .current-path {
     font-size: 1rem;
@@ -1338,18 +1306,6 @@ div.app-header {
     gap: 4px;
 }
 
-.page-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
-}
-
-.header-actions {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-}
 
 /* Modal styles */
 .modal-overlay {
@@ -1362,11 +1318,6 @@ div.app-header {
     z-index: 50;
 }
 
-.modal-container {
-    padding: 1rem;
-    width: 100%;
-    max-width: 28rem;
-}
 
 .modal-content {
     background-color: light-dark(var(--surface-light), var(--surface-dark));
@@ -1379,37 +1330,4 @@ div.app-header {
     align-items: center;
     gap: 0.75rem;
     margin-bottom: 1rem;
-}
-
-.modal-title {
-    font-size: 1.25rem;
-    font-weight: 500;
-    margin: 0;
-    color: inherit;
-}
-
-.modal-description {
-    color: light-dark(var(--text-light), var(--text-dark));
-    margin-bottom: 1.5rem;
-}
-
-.modal-footer {
-    display: flex;
-    justify-content: flex-end;
-    gap: 0.75rem;
-}
-
-/* Button variants */
-.danger-button {
-    background-color: var(--red) !important;
-    color: white !important;
-}
-
-.danger-button:hover {
-    opacity: 0.9;
-}
-
-.danger-button:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
 }
