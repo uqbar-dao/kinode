@@ -4,7 +4,7 @@ import { useAccount, useWriteContract, useWaitForTransactionReceipt, usePublicCl
 import { ConnectButton, useConnectModal } from '@rainbow-me/rainbowkit';
 import { keccak256, toBytes } from 'viem';
 import { mechAbi, HYPERMAP, encodeIntoMintCall, encodeMulticalls, hypermapAbi, MULTICALL } from "../abis";
-import { kinohash } from '../utils/kinohash';
+import { hyperhash } from '../utils/hyperhash';
 import useAppsStore from "../store";
 import { PackageSelector } from "../components";
 import { Tooltip } from '../components/Tooltip';
@@ -143,7 +143,7 @@ export default function PublishPage() {
           abi: hypermapAbi,
           address: HYPERMAP,
           functionName: 'get',
-          args: [kinohash(`${packageName}.${publisherId}`)]
+          args: [hyperhash(`${packageName}.${publisherId}`)]
         });
 
         let [tba, owner, _data] = data as [string, string, string];
@@ -156,7 +156,7 @@ export default function PublishPage() {
             abi: hypermapAbi,
             address: HYPERMAP,
             functionName: 'get',
-            args: [kinohash(publisherId)]
+            args: [hyperhash(publisherId)]
           });
 
           [tba, owner, _data] = data as [string, string, string];
@@ -207,7 +207,7 @@ export default function PublishPage() {
           abi: hypermapAbi,
           address: HYPERMAP,
           functionName: 'get',
-          args: [kinohash(`${packageName}.${publisherName}`)]
+          args: [hyperhash(`${packageName}.${publisherName}`)]
         });
 
         const [tba, _owner, _data] = data as [string, string, string];

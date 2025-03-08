@@ -62,12 +62,6 @@ header button {
   margin-left: 4px;
 }
 
-@media (prefers-color-scheme: light) {
-  .kino-bird {
-    filter: invert(1);
-  }
-}
-
 @media (prefers-color-scheme: dark) {}
 
 .no-ui {

@@ -3,7 +3,7 @@ import { toAscii } from "idna-uts46-hx";
 import { usePublicClient } from 'wagmi'
 
 import { HYPERMAP, hypermapAbi } from '../abis'
-import { kinohash } from "../utils/kinohash";
+import { hyperhash } from "../utils/hyperhash";
 
 export const NAME_URL = "Name must contain only valid characters (a-z, 0-9, and -)";
 export const NAME_LENGTH = "Name must be 9 characters or more";
@@ -83,7 +83,7 @@ function EnterHnsName({
       // only check ownership if name is otherwise valid
       if (validities.length === 0 && normalized.length > 2) {
         try {
-          const namehash = kinohash(normalized)
+          const namehash = hyperhash(normalized)
 
           const data = await client?.readContract({
             address: HYPERMAP,
