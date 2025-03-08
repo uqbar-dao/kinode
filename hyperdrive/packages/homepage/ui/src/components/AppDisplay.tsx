@@ -24,7 +24,7 @@ const AppDisplay: React.FC<AppDisplayProps> = ({ app }) => {
       {app?.base64_icon ? (
         <img className="app-icon" src={app.base64_icon} />
       ) : (
-        <img className="app-icon" src="/bird-orange.svg" />
+        <img className="app-icon" src="/h-green.svg" />
       )}
       <h6 id="app-name">{app?.label || app?.package_name}</h6>
     </a>

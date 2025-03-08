@@ -483,7 +483,7 @@ export default function MyAppsPage() {
                                 <button
                                     onClick={handleUninstall}
                                     disabled={isUninstalling}
-                                    className="danger"
+                                    className="tertiary"
                                 >
                                     {isUninstalling ? <FaSpinner className="fa-spin" /> : 'Confirm Uninstall'}
                                 </button>

@@ -9,7 +9,7 @@ const HELP_MESSAGES: [[&str; 2]; 11] = [
     ["alias", "\n\x1b[1malias\x1b[0m <shorthand> <process-id>: create an alias for a script.\n    - Example: \x1b[1malias get-block get-block:hns-indexer:sys\x1b[0m\n    - note: all of these listed commands are just default aliases for terminal scripts."],
     ["cat", "\n\x1b[1mcat\x1b[0m <vfs-file-path>: print the contents of a file in the terminal.\n    - Example: \x1b[1mcat /terminal:sys/pkg/scripts.json\x1b[0m"],
     ["echo", "\n\x1b[1mecho\x1b[0m <text>: print text to the terminal.\n    - Example: \x1b[1mecho foo\x1b[0m"],
-    ["hi", "\n\x1b[1mhi\x1b[0m <name> <string>: send a text message to another node's command line.\n    - Example: \x1b[1mhi mothu.kino hello world\x1b[0m"],
+    ["hi", "\n\x1b[1mhi\x1b[0m <name> <string>: send a text message to another node's command line.\n    - Example: \x1b[1mhi mothu.hypr hello world\x1b[0m"],
     ["kfetch", "\n\x1b[1mkfetch\x1b[0m: print system information a la neofetch. No arguments."],
     ["kill", "\n\x1b[1mkill\x1b[0m <process-id>: terminate a running process. This will bypass any restart behavior; use judiciously.\n    - Example: \x1b[1mkill chess:chess:sys\x1b[0m"],
     ["m", "\n\x1b[1mm\x1b[0m <address> '<json>': send an inter-process message. <address> is formatted as <node>@<process-id>. <process-id> is formatted as <process-name>:<package-name>:<publisher-node>. JSON containing spaces must be wrapped in single-quotes (\x1b[1m''\x1b[0m).\n    - Example: \x1b[1mm our@eth:distro:sys \"SetPublic\" -a 5\x1b[0m\n    - the '-a' flag is used to expect a response with a given timeout\n    - \x1b[1mour\x1b[0m will always be interpolated by the system as your node's name"],

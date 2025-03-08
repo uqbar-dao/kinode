@@ -9,11 +9,7 @@ use std::collections::{BTreeMap, HashMap};
 /// Fetching OS version from main package
 const CARGO_TOML: &str = include_str!("../../../../Cargo.toml");
 
-const DEFAULT_FAVES: &[&str] = &[
-    "chess:chess:sys",
-    "main:app-store:sys",
-    "settings:settings:sys",
-];
+const DEFAULT_FAVES: &[&str] = &["main:app-store:sys", "settings:settings:sys"];
 
 type PersistedAppOrder = HashMap<String, u32>;
 
@@ -114,23 +110,23 @@ fn init(our: Address) {
 
     http_server
         .bind_http_static_path(
-            "/bird-orange.svg",
-            false, // bird-orange.svg is not auth'd so that apps on subdomains can use it too!
+            "/h-green.svg",
+            false, // h-green.svg is not auth'd so that apps on subdomains can use it too!
             false,
             Some("image/svg+xml".to_string()),
-            include_str!("../../pkg/bird-orange.svg").into(),
+            include_str!("../../pkg/h-green.svg").into(),
         )
-        .expect("failed to bind /bird-orange.svg");
+        .expect("failed to bind /h-green.svg");
 
     http_server
         .bind_http_static_path(
-            "/bird-plain.svg",
-            false, // bird-plain.svg is not auth'd so that apps on subdomains can use it too!
+            "/h-plain.svg",
+            false, // h-plain.svg is not auth'd so that apps on subdomains can use it too!
             false,
             Some("image/svg+xml".to_string()),
-            include_str!("../../pkg/bird-plain.svg").into(),
+            include_str!("../../pkg/h-plain.svg").into(),
         )
-        .expect("failed to bind /bird-plain.svg");
+        .expect("failed to bind /h-plain.svg");
 
     // because boot uses this path to check if homepage is served yet,
     // it's best to respond dynamically and only serve this path once
@@ -424,7 +420,7 @@ fn make_clock_widget() -> String {
                 width: 2px;
                 height: 90px;
                 margin-left: -1px;
-                background-color: var(--orange);
+                background-color: var(--tertiary-color);
             }}
             .center {{
                 width: 12px;

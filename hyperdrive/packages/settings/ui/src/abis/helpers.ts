@@ -25,11 +25,11 @@ export function noteFunction(label: string, value: string) {
 }
 
 const encodeRouters = (routers: string[]): `0x${string}` => {
-    const hashedRouters = routers.map(router => kinohash(router).slice(2)); // Remove '0x' prefix
+    const hashedRouters = routers.map(router => hyperhash(router).slice(2)); // Remove '0x' prefix
     return `0x${hashedRouters.join('')}`;
 };
 
-export const kinohash = (inputName: string): `0x${string}` =>
+export const hyperhash = (inputName: string): `0x${string}` =>
     ('0x' + normalize(inputName)
         .split('.')
         .reverse()

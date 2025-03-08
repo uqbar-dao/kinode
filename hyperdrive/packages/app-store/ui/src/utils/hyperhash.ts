@@ -1,7 +1,7 @@
 import sha3 from 'js-sha3';
 import { toUnicode } from 'idna-uts46-hx';
 
-export const kinohash = (inputName: string): `0x${string}` =>
+export const hyperhash = (inputName: string): `0x${string}` =>
     ('0x' + normalize(inputName)
         .split('.')
         .reverse()

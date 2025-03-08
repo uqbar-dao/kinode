@@ -250,7 +250,7 @@ A list of the terminal scripts included in this distro:
 - `help <command>`: print the help message for a command.
   Leave the command blank to print the help message for all commands.
 - `hi <name> <string>`: send a text message to another node's command line.
-    - Example: `hi mothu.kino hello world`
+    - Example: `hi mothu.hypr hello world`
 - `hfetch`: print system information a la neofetch.
   No arguments.
 - `kill <process-id>`: terminate a running process.
