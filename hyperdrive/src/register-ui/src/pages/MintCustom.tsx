@@ -131,7 +131,10 @@ function MintCustom({
                                 <input type="text" name="name" placeholder="Enter hypermap name" />
                                 <input type="text" name="full-hns-name" placeholder="Enter full HNS name" />
                                 <input type="text" name="tba" placeholder="Enter TBA to mint under" />
+                                <details>
+                                    <summary>Advanced Options</summary>
                                 <DirectCheckbox {...{ direct, setDirect }} />
+                                </details>
                                 <div className="button-group">
                                     <button type="submit" className="button">
                                         Mint custom name

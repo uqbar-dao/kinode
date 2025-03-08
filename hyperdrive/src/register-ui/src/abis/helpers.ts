@@ -1,6 +1,6 @@
 
 import { NetworkingInfo } from "../lib/types";
-import { kinohash } from "../utils/kinohash";
+import { hyperhash } from "../utils/hyperhash";
 import { ipToBytes, portToBytes } from "../utils/hns_encoding";
 import { multicallAbi, hypermapAbi, mechAbi, HYPERMAP, MULTICALL } from "./";
 import { encodeFunctionData, encodePacked, stringToHex, bytesToHex } from "viem";
@@ -8,7 +8,7 @@ import { encodeFunctionData, encodePacked, stringToHex, bytesToHex } from "viem"
 // Function to encode router names into keccak256 hashes
 // Function to encode router names into keccak256 hashes
 const encodeRouters = (routers: string[]): `0x${string}` => {
-    const hashedRouters = routers.map(router => kinohash(router).slice(2)); // Remove '0x' prefix
+    const hashedRouters = routers.map(router => hyperhash(router).slice(2)); // Remove '0x' prefix
     return `0x${hashedRouters.join('')}`;
 };
 

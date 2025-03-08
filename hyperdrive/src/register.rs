@@ -78,7 +78,7 @@ pub async fn register(
                 // select 3 random routers from this list
                 use rand::prelude::SliceRandom;
                 let routers = (1..=12)
-                    .map(|i| format!("default-router-{}.kino", i))
+                    .map(|i| format!("default-router-{}.hypr", i))
                     .collect::<Vec<_>>()
                     .choose_multiple(&mut rand::thread_rng(), 3)
                     .cloned()

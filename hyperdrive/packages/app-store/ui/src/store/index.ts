@@ -2,7 +2,7 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { PackageState, AppListing, MirrorCheckFile, DownloadItem, HomepageApp, ManifestResponse, Notification, UpdateInfo } from '../types/Apps'
 import { HTTP_STATUS } from '../constants/http'
-import KinodeClientApi from "@kinode/client-api"
+import HyperwareClientApi from "@hyperware-ai/client-api"
 import { WEBSOCKET_URL } from '../utils/ws'
 
 const BASE_URL = '/main:app-store:sys'
@@ -12,7 +12,7 @@ interface AppsStore {
   installed: Record<string, PackageState>
   downloads: Record<string, DownloadItem[]>
   ourApps: AppListing[]
-  ws: KinodeClientApi
+  ws: HyperwareClientApi
   notifications: Notification[]
   homepageApps: HomepageApp[]
   activeDownloads: Record<string, { downloaded: number, total: number }>
@@ -475,7 +475,7 @@ const useAppsStore = create<AppsStore>()((set, get) => ({
     }
   },
 
-  ws: new KinodeClientApi({
+  ws: new HyperwareClientApi({
     uri: WEBSOCKET_URL,
     nodeId: (window as any).our?.node,
     processId: "main:app-store:sys",

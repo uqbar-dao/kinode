@@ -133,7 +133,10 @@ function ResetHnsName({
                   </Tooltip>
                 </h3>
                 <EnterHnsName {...{ address, name, setName, triggerNameCheck, nameValidities, setNameValidities, setTba, isReset: true }} />
+                <details>
+                    <summary>Advanced Options</summary>
                 <DirectCheckbox {...{ direct, setDirect }} />
+                </details>
                 <p>
                   A reset will not delete any data. It only updates the networking information that your node publishes onchain.
                 </p>

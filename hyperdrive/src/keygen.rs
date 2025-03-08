@@ -165,7 +165,7 @@ pub fn get_username_and_routers(keyfile: &[u8]) -> Result<(String, Vec<String>),
     Ok((username, routers))
 }
 
-/// kinohash
+/// hyperhash
 pub fn namehash(name: &str) -> [u8; 32] {
     let mut node = B256::default();
 

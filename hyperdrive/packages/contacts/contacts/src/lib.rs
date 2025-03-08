@@ -14,7 +14,8 @@ wit_bindgen::generate!({
     additional_derives: [PartialEq, serde::Deserialize, serde::Serialize, process_macros::SerdeJsonInto],
 });
 
-const ICON: &str = include_str!("icon");
+// TODO: re-add ICON
+//const ICON: &str = include_str!("icon");
 
 #[cfg(not(feature = "simulation-mode"))]
 const CHAIN_ID: u64 = hypermap::HYPERMAP_CHAIN_ID;
@@ -138,7 +139,9 @@ impl VersionedState {
 
 call_init!(initialize);
 fn initialize(our: Address) {
-    homepage::add_to_homepage("Contacts", Some(ICON), Some("/"), None);
+    // TODO: re-add ICON
+    //homepage::add_to_homepage("Contacts", Some(ICON), Some("/"), None);
+    homepage::add_to_homepage("Contacts", None, Some("/"), None);
 
     let mut state: VersionedState = get_typed_state(|bytes| serde_json::from_slice(bytes))
         .unwrap_or_else(|| VersionedState::new(our));
